@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>GameTopUp - Top Up Semua Game</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+      font-family:'Poppins',sans-serif;
+    }
+
+    body{
+      background:
+      radial-gradient(circle at top,
+      rgba(255,215,0,0.15),
+      transparent 25%),
+      #0d0d0d;
+      color:white;
+      overflow-x:hidden;
+    }
+
+    /* NAVBAR */
+
+    nav{
+      width:100%;
+      padding:20px 8%;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      position:fixed;
+      top:0;
+      z-index:1000;
+      backdrop-filter:blur(12px);
+      background:rgba(0,0,0,0.4);
+      border-bottom:1px solid rgba(255,215,0,0.1);
+    }
+
+    .logo{
+      font-size:28px;
+      font-weight:700;
+      color:#FFD700;
+      text-shadow:
+      0 0 10px #FFD700,
+      0 0 20px #FFD700;
+    }
+
+    nav ul{
+      display:flex;
+      gap:25px;
+      list-style:none;
+    }
+
+    nav ul li a{
+      color:white;
+      text-decoration:none;
+      transition:0.3s;
+    }
+
+    nav ul li a:hover{
+      color:#FFD700;
+      text-shadow:0 0 10px #FFD700;
+    }
+
+    .login-btn{
+      padding:10px 20px;
+      border:none;
+      border-radius:12px;
+      background:#FFD700;
+      color:black;
+      font-weight:700;
+      cursor:pointer;
+      transition:0.3s;
+      box-shadow:0 0 15px rgba(255,215,0,0.5);
+    }
+
+    .login-btn:hover{
+      box-shadow:
+      0 0 15px rgba(255,215,0,0.9),
+      0 0 35px rgba(255,215,0,0.6);
+      transform:translateY(-2px);
+    }
+
+    /* HERO */
+
+    .hero{
+      min-height:100vh;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      text-align:center;
+      padding:120px 8% 60px;
+    }
+
+    .hero-content h1{
+      font-size:60px;
+      line-height:1.2;
+      margin-bottom:20px;
+      color:#FFD700;
+      text-shadow:
+      0 0 10px #FFD700,
+      0 0 25px #FFD700;
+    }
+
+    .hero-content p{
+      color:#ccc;
+      max-width:700px;
+      margin:auto;
+      margin-bottom:35px;
+      font-size:18px;
+    }
+
+    .hero-btn{
+      padding:15px 35px;
+      border:none;
+      border-radius:14px;
+      background:#FFD700;
+      color:black;
+      font-size:16px;
+      font-weight:700;
+      cursor:pointer;
+      transition:0.3s;
+      box-shadow:0 0 15px rgba(255,215,0,0.5);
+    }
+
+    .hero-btn:hover{
+      transform:translateY(-3px);
+      box-shadow:
+      0 0 20px rgba(255,215,0,0.9),
+      0 0 40px rgba(255,215,0,0.6);
+    }
+
+    /* GAME LIST */
+
+    .games{
+      padding:80px 8%;
+    }
+
+    .section-title{
+      text-align:center;
+      margin-bottom:50px;
+    }
+
+    .section-title h2{
+      font-size:40px;
+      color:#FFD700;
+      text-shadow:0 0 15px #FFD700;
+    }
+
+    .game-grid{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+      gap:25px;
+    }
+
+    .game-card{
+      background:rgba(255,255,255,0.05);
+      border:1px solid rgba(255,215,0,0.15);
+      border-radius:22px;
+      overflow:hidden;
+      transition:0.3s;
+      backdrop-filter:blur(10px);
+      box-shadow:
+      0 0 15px rgba(255,215,0,0.08);
+    }
+
+    .game-card:hover{
+      transform:translateY(-8px);
+      box-shadow:
+      0 0 20px rgba(255,215,0,0.4),
+      0 0 40px rgba(255,215,0,0.15);
+    }
+
+    .game-card img{
+      width:100%;
+      height:230px;
+      object-fit:cover;
+    }
+
+    .game-info{
+      padding:20px;
+    }
+
+    .game-info h3{
+      margin-bottom:10px;
+      color:#FFD700;
+    }
+
+    .game-info p{
+      color:#bbb;
+      font-size:14px;
+      margin-bottom:18px;
+    }
+
+    .buy-btn{
+      width:100%;
+      padding:12px;
+      border:none;
+      border-radius:12px;
+      background:#FFD700;
+      color:black;
+      font-weight:700;
+      cursor:pointer;
+      transition:0.3s;
+    }
+
+    .buy-btn:hover{
+      box-shadow:
+      0 0 15px rgba(255,215,0,0.8);
+    }
+
+    /* FOOTER */
+
+    footer{
+      padding:30px;
+      text-align:center;
+      color:#999;
+      border-top:1px solid rgba(255,215,0,0.1);
+      margin-top:60px;
+    }
+
+    /* RESPONSIVE */
+
+    @media(max-width:768px){
+
+      nav{
+        flex-direction:column;
+        gap:15px;
+      }
+
+      .hero-content h1{
+        font-size:42px;
+      }
+
+      .hero-content p{
+        font-size:15px;
+      }
+
+    }
+
+  </style>
+</head>
+
+<body>
+
+  <!-- NAVBAR -->
+
+  <nav>
+
+    <div class="logo">
+      GameTopUp
+    </div>
+
+    <ul>
+      <li><a href="#">Home</a></li>
+      <li><a href="#">Top Up</a></li>
+      <li><a href="#">Promo</a></li>
+      <li><a href="#">Contact</a></li>
+    </ul>
+
+    <button class="login-btn">
+      Login
+    </button>
+
+  </nav>
+
+  <!-- HERO -->
+
+  <section class="hero">
+
+    <div class="hero-content">
+
+      <h1>
+        Top Up Semua Game
+        <br>
+        Murah & Terpercaya
+      </h1>
+
+      <p>
+        Proses cepat, aman, terpercaya dan support berbagai game populer.
+        Harga termurah dengan pembayaran lengkap.
+      </p>
+
+      <button class="hero-btn">
+        Top Up Sekarang
+      </button>
+
+    </div>
+
+  </section>
+
+  <!-- GAME SECTION -->
+
+  <section class="games">
+
+    <div class="section-title">
+      <h2>Game Populer</h2>
+    </div>
+
+    <div class="game-grid">
+
+      <div class="game-card">
+        <img src="https://wallpapercave.com/wp/wp5128415.jpg">
+        <div class="game-info">
+          <h3>Free Fire</h3>
+          <p>Diamond murah dan cepat masuk.</p>
+          <button class="buy-btn">Top Up</button>
+        </div>
+      </div>
+
+      <div class="game-card">
+        <img src="https://wallpapercave.com/wp/wp7478493.jpg">
+        <div class="game-info">
+          <h3>Mobile Legends</h3>
+          <p>Top up diamond ML terpercaya.</p>
+          <button class="buy-btn">Top Up</button>
+        </div>
+      </div>
+
+      <div class="game-card">
+        <img src="https://wallpapercave.com/wp/wp8816311.jpg">
+        <div class="game-info">
+          <h3>PUBG Mobile</h3>
+          <p>UC murah dan proses cepat.</p>
+          <button class="buy-btn">Top Up</button>
+        </div>
+      </div>
+
+      <div class="game-card">
+        <img src="https://wallpapercave.com/wp/wp9422116.jpg">
+        <div class="game-info">
+          <h3>Valorant</h3>
+          <p>Valorant Points harga terbaik.</p>
+          <button class="buy-btn">Top Up</button>
+        </div>
+      </div>
+
+    </div>
+
+  </section>
+
+  <!-- FOOTER -->
+
+  <footer>
+    © 2026 GameTopUp - Aman • Cepat • Terpercaya
+  </footer>
+
+</body>
+  </html>
